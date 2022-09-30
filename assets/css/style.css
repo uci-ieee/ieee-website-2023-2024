@@ -1986,3 +1986,10 @@ input[type=checkbox] {
   top: 16px;
   right: 26px;
 }
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
