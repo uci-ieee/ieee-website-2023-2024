@@ -13,7 +13,7 @@ document.write(`
           UCI Information and Computer Science <br>
           Building 302, Room 225<br>
           Irvine, CA 92697 <br><br>
-          <strong>Email:</strong> ieee.ucirvine@gmail.com<br>
+          <strong>Email:</strong> ieee@uci.edu<br>
         </p>
       </div>
     </div>
