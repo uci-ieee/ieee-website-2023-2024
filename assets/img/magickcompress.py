@@ -5,12 +5,12 @@ import sys, os, subprocess
 from pathlib import Path
 #dirlist = os.listdir(sys.argv[1])
 #compressdir = "events/" # directory of images to be compressed
-compressdir = "micromouse/"
+compressdir = "ops-page/"
 dirlist = os.listdir(compressdir)
 print(dirlist)
 for file in dirlist:
     
-    if (file.endswith("jpg") | file.endswith("png")):
+    if (file.endswith("jpg") | file.endswith("JPG") | file.endswith("png")):
         filepath = Path('./'+compressdir+file)
         print(filepath, end =" ")
         if not os.path.exists(str(filepath.with_suffix('.webp'))): # doesn't rerun on previously converted images
