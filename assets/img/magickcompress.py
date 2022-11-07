@@ -4,8 +4,7 @@
 import sys, os, subprocess
 from pathlib import Path
 #dirlist = os.listdir(sys.argv[1])
-#compressdir = "events/" # directory of images to be compressed
-compressdir = "ops-page/"
+compressdir = "events/"# directory of images to be compressed
 dirlist = os.listdir(compressdir)
 print(dirlist)
 for file in dirlist:
