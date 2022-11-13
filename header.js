@@ -46,8 +46,8 @@ document.write(`
     </ul>
 
   </nav><!-- .navbar -->
-
-  <a class="get-started-btn" onClick="document.getElementById('end').scrollIntoView();">Contact</a>
+  <i class="bi bi-list mobile-nav-toggle"></i>
+  <!--a class="get-started-btn" onClick="document.getElementById('end').scrollIntoView();">Contact</a-->
 
 </div>
 </header>
