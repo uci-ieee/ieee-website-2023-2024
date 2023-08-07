@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
       - name: Update Submodules
         run: |
@@ -32,3 +34,7 @@ jobs:
         run: |
           ssh-keyscan ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
           scp -r ./* ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.DEPLOY_PATH }}
+
+      - name: Reload NGINX
+        run: |
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "sudo /usr/sbin/nginx -s reload"
