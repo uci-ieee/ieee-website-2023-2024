@@ -1,6 +1,7 @@
 name: Deploy +Prod +GA +OPS
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
