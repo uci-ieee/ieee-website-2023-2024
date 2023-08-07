@@ -17,6 +17,8 @@ jobs:
 
       - name: Update Submodules
         run: |
+          git config --local user.email "ieee@uci.edu"
+          git config --local user.name "Github Actions"
           git submodule foreach 'git checkout main && git pull origin main'
           git add .
           git commit -m "Update submodules to latest commits"
