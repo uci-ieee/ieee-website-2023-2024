@@ -21,8 +21,9 @@ jobs:
 
       - name: Replace Google Analytics placeholder
         run: |
-          GA_TAG="<script async src=\"https://www.googletagmanager.com/gtag/js?id=${{ secrets.GA_MEASUREMENT_ID }}\"></script><script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '${{ secrets.GA_MEASUREMENT_ID }}');</script>"
-          find ./ -type f -name "*.html" -exec sed -i "s#<!-- GA_CODE_PLACEHOLDER -->#$GA_TAG#g" {} \;
+          echo "<script async src=\"https://www.googletagmanager.com/gtag/js?id=${{ secrets.GA_MEASUREMENT_ID }}\"></script><script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '${{ secrets.GA_MEASUREMENT_ID }}');</script>" > ga_code.html
+          find ./ -type f -name "*.html" -exec sh -c 'sed "/<!-- GA_CODE_PLACEHOLDER -->/r ga_code.html" -e "/<!-- GA_CODE_PLACEHOLDER -->/d" {} > {}.tmp && mv {}.tmp {}' \;
+          rm ga_code.html
 
       - name: Install SSH key
         uses: webfactory/ssh-agent@v0.5.3
