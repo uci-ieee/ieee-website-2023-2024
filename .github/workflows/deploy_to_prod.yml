@@ -1,0 +1,34 @@
+name: Deploy +Prod +GA +OPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Update Submodules
+        run: |
+          git submodule update --init --recursive
+          git submodule foreach git pull origin master
+
+      - name: Replace Google Analytics placeholder
+        run: |
+          GA_TAG="<script async src=\"https://www.googletagmanager.com/gtag/js?id=${{ secrets.GA_MEASUREMENT_ID }}\"></script><script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '${{ secrets.GA_MEASUREMENT_ID }}');</script>"
+          find ./ -type f -name "*.html" -exec sed -i "s|<!-- GA_CODE_PLACEHOLDER -->|$GA_TAG|g" {} \;
+
+      - name: Install SSH key
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy to VPS
+        run: |
+          ssh-keyscan ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+          scp -r ./* ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.DEPLOY_PATH }}
