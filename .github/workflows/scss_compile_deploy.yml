@@ -7,7 +7,25 @@ on:
       - main
 
 jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install pre-commit
+        run: pip install pre-commit
+
+      - name: Run pre-commit hooks
+        run: pre-commit run --all-files
+
   build:
+    needs: pre-commit
     runs-on: ubuntu-latest
 
     steps:
@@ -20,9 +38,9 @@ jobs:
           git submodule foreach git pull origin main
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: "16"
 
       - name: Install SCSS Compiler and Bootstrap
         run: |
@@ -38,7 +56,7 @@ jobs:
         run: find ./ -type f -name "*.html" -exec sed -i 's/GA_MEASUREMENT_ID/${{ secrets.GA_MEASUREMENT_ID }}/g' {} \;
 
       - name: Archive compiled files
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: compiled-files
           path: ./
@@ -49,12 +67,12 @@ jobs:
 
     steps:
       - name: Download compiled files
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: compiled-files
 
       - name: Install SSH key
-        uses: webfactory/ssh-agent@v0.5.3
+        uses: webfactory/ssh-agent@v0.7.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
