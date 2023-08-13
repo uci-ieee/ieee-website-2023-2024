@@ -1,4 +1,4 @@
-name: test scss compile
+name: scss compile/deploy
 
 on:
   workflow_dispatch:
