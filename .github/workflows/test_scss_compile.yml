@@ -1,0 +1,23 @@
+name: Deploy +Prod +GA +OPS
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - add-scss-compile
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Update Submodules
+        run: |
+          git submodule update --init --recursive
+          git submodule foreach git pull origin main
+
+      - name: Replace GA_MEASUREMENT_ID in HTML files
+        run: find ./ -type f -name "*.html" -exec sed -i 's/GA_MEASUREMENT_ID/${{ secrets.GA_MEASUREMENT_ID }}/g' {} \;
