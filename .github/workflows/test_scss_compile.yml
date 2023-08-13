@@ -19,22 +19,20 @@ jobs:
           git submodule update --init --recursive
           git submodule foreach git pull origin main
 
-      - name: Navigate to ops submodule
-        run: cd ops
-
       - name: Setup Node.js
         uses: actions/setup-node@v2
-        #with:
-        #  node-version: '16'
+        with:
+          node-version: '16'
 
       - name: Install SCSS Compiler and Bootstrap
-        run: npm install
+        run: |
+          cd ops
+          npm install
 
       - name: Compile SCSS
-        run: npm run sass
-
-      - name: Navigate back to main directory
-        run: cd ..
+        run: |
+          cd ops
+          npm run sass
 
       - name: Replace GA_MEASUREMENT_ID in HTML files
         run: find ./ -type f -name "*.html" -exec sed -i 's/GA_MEASUREMENT_ID/${{ secrets.GA_MEASUREMENT_ID }}/g' {} \;
