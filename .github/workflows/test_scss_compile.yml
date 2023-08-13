@@ -1,4 +1,4 @@
-name: Deploy +Prod +GA +OPS
+name: test scss compile
 
 on:
   workflow_dispatch:
@@ -7,17 +7,35 @@ on:
       - add-scss-compile
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout
 
       - name: Update Submodules
         run: |
           git submodule update --init --recursive
           git submodule foreach git pull origin main
+
+      - name: Navigate to ops submodule
+        run: cd ops
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        #with:
+        #  node-version: '16'
+
+      - name: Install SCSS Compiler and Bootstrap
+        run: |
+          npm install sass bootstrap
+
+      - name: Compile SCSS
+        run: ./node_modules/.bin/sass --load-path node_modules/bootstrap/scss path_within_ops/input.scss path_within_ops/output.css
+
+      - name: Navigate back to main directory
+        run: cd ..
 
       - name: Replace GA_MEASUREMENT_ID in HTML files
         run: find ./ -type f -name "*.html" -exec sed -i 's/GA_MEASUREMENT_ID/${{ secrets.GA_MEASUREMENT_ID }}/g' {} \;
