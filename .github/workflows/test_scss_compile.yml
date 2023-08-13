@@ -36,3 +36,33 @@ jobs:
 
       - name: Replace GA_MEASUREMENT_ID in HTML files
         run: find ./ -type f -name "*.html" -exec sed -i 's/GA_MEASUREMENT_ID/${{ secrets.GA_MEASUREMENT_ID }}/g' {} \;
+
+      - name: Archive compiled files
+        uses: actions/upload-artifact@v2
+        with:
+          name: compiled-files
+          path: ./
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download compiled files
+        uses: actions/download-artifact@v2
+        with:
+          name: compiled-files
+
+      - name: Install SSH key
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy to VPS
+        run: |
+          ssh-keyscan ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+          rsync -av --delete ./ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:~/test_deploy/
+
+      - name: Reload NGINX
+        run: |
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "sudo /usr/sbin/nginx -s reload"
