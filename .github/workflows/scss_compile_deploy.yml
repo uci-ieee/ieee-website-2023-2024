@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - add-scss-compile
+      - main
 
 jobs:
   build:
@@ -61,7 +61,7 @@ jobs:
       - name: Deploy to VPS
         run: |
           ssh-keyscan ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
-          rsync -av --delete ./ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:~/test_deploy/
+          rsync -av --delete ./ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.DEPLOY_PATH }}
 
       - name: Reload NGINX
         run: |
