@@ -154,7 +154,7 @@ h6 {
 }
 
 /**
-* Get Startet Button 
+* Get Startet Button
 */
 .get-started-btn {
   margin-left: 22px;
@@ -184,7 +184,7 @@ h6 {
 # Navigation Menu
 --------------------------------------------------------------*/
 /**
-* Desktop Navigation 
+* Desktop Navigation
 */
 .navbar {
   padding: 100;
@@ -297,7 +297,7 @@ h6 {
 }
 
 /**
-* Mobile Navigation 
+* Mobile Navigation
 */
 .mobile-nav-toggle {
   color: #37423b;
@@ -880,79 +880,79 @@ section {
   color: #37423b;
 }
 
-.courses .trainer {
+.courses .officer {
   padding-top: 15px;
   border-top: 1px solid #eef0ef;
 }
 
-.courses .trainer .trainer-profile img {
+.courses .officer .officer-profile img {
   max-width: 50px;
   border-radius: 50px;
 }
 
-.courses .trainer .trainer-profile span {
+.courses .officer .officer-profile span {
   padding-left: 10px;
   font-weight: 600;
   font-size: 16px;
   color: #5a6c60;
 }
 
-.courses .trainer .trainer-rank {
+.courses .officer .officer-rank {
   font-size: 18px;
   color: #657a6d;
 }
 
 /*--------------------------------------------------------------
-# Trainers
+# officers
 --------------------------------------------------------------*/
-.trainers .member {
+.officers .member {
   text-align: center;
   margin-bottom: 20px;
   background: #fff;
   border: 1px solid #eef0ef;
 }
 
-.trainers .member img {
+.officers .member img {
   margin: -1px -1px 30px -1px;
 }
 
-.trainers .member .member-content {
+.officers .member .member-content {
   padding: 0 20px 30px 20px;
 }
 
-.trainers .member h4 {
+.officers .member h4 {
   font-weight: 700;
   margin-bottom: 2px;
   font-size: 18px;
 }
 
-.trainers .member span {
+.officers .member span {
   font-style: italic;
   display: block;
   font-size: 13px;
 }
 
-.trainers .member p {
+.officers .member p {
   padding-top: 10px;
   font-size: 14px;
   font-style: italic;
   color: #aaaaaa;
 }
 
-.trainers .member .social {
+.officers .member .social {
   margin-top: 15px;
 }
 
-.trainers .member .social a {
+.officers .member .social a {
   color: #7e9486;
   transition: 0.3s;
 }
 
-.trainers .member .social a:hover {
+.officers .member .social a:hover {
   color: #00629b;
 }
 
-.trainers .member .social i {
+.officers .member .social i {
   font-size: 18px;
   margin: 0 2px;
 }
