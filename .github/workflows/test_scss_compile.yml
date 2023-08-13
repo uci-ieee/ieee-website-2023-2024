@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout
+        uses: actions/checkout@v3
 
       - name: Update Submodules
         run: |
@@ -28,11 +28,10 @@ jobs:
         #  node-version: '16'
 
       - name: Install SCSS Compiler and Bootstrap
-        run: |
-          npm install sass bootstrap
+        run: npm install
 
       - name: Compile SCSS
-        run: ./node_modules/.bin/sass --load-path node_modules/bootstrap/scss path_within_ops/input.scss path_within_ops/output.css
+        run: npm run sass
 
       - name: Navigate back to main directory
         run: cd ..
