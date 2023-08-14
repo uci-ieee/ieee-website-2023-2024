@@ -1,0 +1,84 @@
+name: scss compile/deploy
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - preview
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install pre-commit
+        run: pip install pre-commit
+
+      - name: Run pre-commit hooks
+        run: pre-commit run --all-files
+
+  build:
+    needs: pre-commit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Update Submodules
+        run: |
+          git submodule update --init --recursive
+          git submodule foreach git pull origin main
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+
+      - name: Install SCSS Compiler and Bootstrap
+        run: |
+          cd ops
+          npm install
+
+      - name: Compile SCSS
+        run: |
+          cd ops
+          npm run sass
+
+      - uses: actions/upload-artifact@master
+        with:
+          name: page
+          path: |
+            ./
+            !./ops/node_modules/*
+          if-no-files-found: error
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{steps.deployment.outputs.page_url}}
+
+    permissions:
+      pages: write # to deploy to Pages
+      id-token: write # to verify the deployment originates from an appropriate source
+
+    steps:
+    - uses: actions/download-artifact@master
+      with:
+        name: page
+        path: .
+    - uses: actions/configure-pages@v1
+    - uses: actions/upload-pages-artifact@v1
+      with:
+        path: .
+    - id: deployment
+      uses: actions/deploy-pages@main
