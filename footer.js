@@ -27,8 +27,8 @@ document.write(`
           <a href="https://www.linkedin.com/company/ieee-uci/" class="linkedin"><i class="bx bxl-linkedin bx-md icon-white"></i></a>
         </div>
         <div class="sponsors" style="color:white" >
-          <a href="https://www.microchip.com/" class="microchip"> <img src="assets/img/R.jpg" class="img-fluid" alt="" width="100" height="100"></a>
-          <a href="https://mule.to/p4eg" class="stickermule"><img src="assets/img/sticker-mule-logo-light-stacked.png" class="img-fluid" alt="" width="100" height="100"></a>
+          <a href="https://www.microchip.com/" class="microchip"> <img src="assets/img/MCHP-167156da.png" class="img-fluid" alt="" width="60" height="60"></a>
+          <a href="https://mule.to/p4eg" class="stickermule"><img src="assets/img/sticker-mule-logo-light-stacked.png" class="img-fluid" alt="" width="60" height="60"></a>
         </div>
         <div class="copyright" style="color:white" >
           <br> <br> <br> &copy; Copyright <strong style="color:white"><span>IEEE@UCI</span></strong>. All Rights Reserved
