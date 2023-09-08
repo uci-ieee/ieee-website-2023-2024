@@ -31,7 +31,7 @@ document.write(`
           <a href="https://mule.to/p4eg" class="stickermule"><img src="assets/img/sticker-mule-logo-light-stacked.png" class="img-fluid" alt="" width="60" height="60"></a>
         </div>
         <div class="copyright" style="color:white" >
-          <br> <br> <br> &copy; Copyright <strong style="color:white"><span>IEEE@UCI</span></strong>. All Rights Reserved
+           <br> &copy; Copyright <strong style="color:white"><span>IEEE@UCI</span></strong>. All Rights Reserved
         </div>
         <div class="credits" style="color:white">
           <!-- All the links in the footer should remain intact. -->
