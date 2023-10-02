@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -40,18 +40,18 @@ jobs:
       - name: Set up cwebp
         run: sudo apt-get install -y webp
 
-      - name: Convert PNG to WebP and remove original PNG files
+      - name: Convert Images to WebP and remove original files
         run: |
           shopt -s globstar nullglob  # Enable recursive glob and handle no-match as empty result
-          for file in assets/img/**/*.png
+          for file in assets/img/**/*.{png,PNG,jpg,JPG,jpeg,JPEG}
           do
-            cwebp "$file" -o "${file%.png}.webp"
+            cwebp "$file" -o "${file%.*}.webp"
             rm "$file"
           done
 
-      - name: Update references from PNG to WebP
+      - name: Update references from PNG, JPG to WebP
         run: |
-          find ./ -type f -not -path "./.git/*" -exec grep -Il '.png' {} + | xargs sed -i 's/\.png/\.webp/g'
+          find ./ -type f -not -path "./.git/*" -exec grep -IlE '\.png|\.PNG|\.jpg|\.JPG|\.jpeg|\.JPEG' {} + | xargs sed -i -e 's/\.png/\.webp/g' -e 's/\.PNG/\.webp/g' -e 's/\.jpg/\.webp/g' -e 's/\.JPG/\.webp/g' -e 's/\.jpeg/\.webp/g' -e 's/\.JPEG/\.webp/g'
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
