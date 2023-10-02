@@ -37,6 +37,22 @@ jobs:
           git submodule update --init --recursive
           git submodule foreach git pull origin main
 
+      - name: Set up cwebp
+        run: sudo apt-get install -y webp
+
+      - name: Convert PNG to WebP and remove original PNG files
+        run: |
+          shopt -s globstar nullglob  # Enable recursive glob and handle no-match as empty result
+          for file in assets/img/**/*.png
+          do
+            cwebp "$file" -o "${file%.png}.webp"
+            rm "$file"
+          done
+
+      - name: Update references from PNG to WebP
+        run: |
+          find ./ -type f -not -path "./.git/*" -exec grep -Il '.png' {} + | xargs sed -i 's/\.png/\.webp/g'
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
@@ -72,13 +88,13 @@ jobs:
       id-token: write # to verify the deployment originates from an appropriate source
 
     steps:
-    - uses: actions/download-artifact@master
-      with:
-        name: page
-        path: .
-    - uses: actions/configure-pages@v1
-    - uses: actions/upload-pages-artifact@v1
-      with:
-        path: .
-    - id: deployment
-      uses: actions/deploy-pages@main
+      - uses: actions/download-artifact@master
+        with:
+          name: page
+          path: .
+      - uses: actions/configure-pages@v1
+      - uses: actions/upload-pages-artifact@v1
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@main
