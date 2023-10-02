@@ -1,4 +1,4 @@
-name: scss compile/deploy
+name: Compile + Deploy to Preview
 
 on:
   workflow_dispatch:
