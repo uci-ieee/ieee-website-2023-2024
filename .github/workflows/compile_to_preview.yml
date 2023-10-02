@@ -53,6 +53,9 @@ jobs:
         run: |
           find ./ -type f -not -path "./.git/*" -exec grep -IlE '\.png|\.PNG|\.jpg|\.JPG|\.jpeg|\.JPEG' {} + | xargs sed -i -e 's/\.png/\.webp/g' -e 's/\.PNG/\.webp/g' -e 's/\.jpg/\.webp/g' -e 's/\.JPG/\.webp/g' -e 's/\.jpeg/\.webp/g' -e 's/\.JPEG/\.webp/g'
 
+      - name: Remove .git directory
+        run: rm -rf ./.git
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
