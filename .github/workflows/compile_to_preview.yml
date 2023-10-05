@@ -1,10 +1,10 @@
-name: Compile + Deploy to Preview
+name: Compile + Deploy to Main
 
 on:
   workflow_dispatch:
   push:
     branches:
-      - preview
+      - main
 
 jobs:
   pre-commit:
@@ -32,10 +32,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Update Submodules
-        run: |
-          git submodule update --init --recursive
-          git submodule foreach git pull origin main
+      - name: Update Submodules 1
+        run: git submodule update --init --recursive
+
+      - name: Update Submodules 2
+        run: git submodule foreach git pull origin main
 
       - name: Set up cwebp
         run: sudo apt-get install -y webp
