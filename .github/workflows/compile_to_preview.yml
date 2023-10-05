@@ -32,6 +32,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Update Submodules 1
+        run: git submodule update --init --recursive
+
+      - name: Update Submodules 2
+        run: git submodule foreach git pull origin main
 
       - name: Set up cwebp
         run: sudo apt-get install -y webp
@@ -56,6 +61,24 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "16"
+
+      - name: Install SCSS Compiler and Bootstrap
+        run: |
+          cd ops
+          npm install
+
+      - name: Compile SCSS
+        run: |
+          cd ops
+          npm run sass
+
+      - uses: actions/upload-artifact@master
+        with:
+          name: page
+          path: |
+            ./
+            !./ops/node_modules/*
+          if-no-files-found: error
 
   deploy:
     runs-on: ubuntu-latest
