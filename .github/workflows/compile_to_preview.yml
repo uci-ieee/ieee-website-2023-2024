@@ -1,4 +1,4 @@
-name: Compile + Deploy to Preview
+name: Compile + Deploy to Main
 
 on:
   workflow_dispatch:
