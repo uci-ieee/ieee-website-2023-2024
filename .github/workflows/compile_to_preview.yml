@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - preview
+      - main
 
 jobs:
   pre-commit:
