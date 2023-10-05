@@ -46,7 +46,7 @@ jobs:
           shopt -s globstar nullglob  # Enable recursive glob and handle no-match as empty result
           for file in assets/img/**/*.{png,PNG,jpg,JPG,jpeg,JPEG}
           do
-            cwebp "$file" -o "${file%.*}.webp"
+            cwebp "$file" -o "${file%.*}.webp" -s 1000 1000 -metadata all
             rm "$file"
           done
 
