@@ -47,6 +47,9 @@ jobs:
           cd ops
           npm install
 
+      - name: Bust Cache
+        run: npm run cache-busting
+
       - name: Compile SCSS
         run: |
           cd ops
