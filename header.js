@@ -13,7 +13,6 @@ document.write(`
           <ul>
             <li><a href="officers.html">Officers</a></li>
             <li><a href="ourMission.html">Our Mission</a></li>
-            <li><a href="boardApps.html">Board Applications</a></li>
           </ul>
         </li>
         <li class="dropdown"><a href="#"><span>Projects</span> <i class="bi bi-chevron-down"></i></a>
@@ -25,6 +24,7 @@ document.write(`
         <li><a href="workshops.html">Workshops</a></li>
         <li><a href="events.html">Events</a></li>
         <li><a href="lab.html">Lab</a></li>
+        <li><a href="links.html">Get Involved!</a></li>
 
         <!-- DEEP DROPDOWN EXAMPLE
         <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
