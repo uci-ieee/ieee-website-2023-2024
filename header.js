@@ -25,6 +25,7 @@ document.write(`
         <li><a href="events.html">Events</a></li>
         <li><a href="lab.html">Lab</a></li>
         <li><a href="links.html">Get Involved!</a></li>
+        <li><a href="sponsors.html">Our Sponsors </a></li>
 
         <!-- DEEP DROPDOWN EXAMPLE
         <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
