@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: 3.11
 
-       - name: Setup Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "20"
@@ -41,11 +41,6 @@ jobs:
         run: |
           git submodule update --init --recursive
           git submodule foreach git pull origin main
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "20"
 
       - name: Install SCSS Compiler and Bootstrap
         run: |
