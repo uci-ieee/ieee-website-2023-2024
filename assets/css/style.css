@@ -226,7 +226,7 @@ h6 {
 .navbar a:hover,
 .navbar .active,
 .navbar .active:focus,
-.navbar li:hover>a {
+.navbar li:hover > a {
   color: #00629b;
 }
 
@@ -263,11 +263,11 @@ h6 {
 
 .navbar .dropdown ul a:hover,
 .navbar .dropdown ul .active:hover,
-.navbar .dropdown ul li:hover>a {
+.navbar .dropdown ul li:hover > a {
   color: #00629b;
 }
 
-.navbar .dropdown:hover>ul {
+.navbar .dropdown:hover > ul {
   opacity: 1;
   top: 100%;
   visibility: visible;
@@ -279,7 +279,7 @@ h6 {
   visibility: hidden;
 }
 
-.navbar .dropdown .dropdown:hover>ul {
+.navbar .dropdown .dropdown:hover > ul {
   opacity: 1;
   top: 0;
   left: 100%;
@@ -291,7 +291,7 @@ h6 {
     left: -90%;
   }
 
-  .navbar .dropdown .dropdown:hover>ul {
+  .navbar .dropdown .dropdown:hover > ul {
     left: -100%;
   }
 }
@@ -363,7 +363,7 @@ h6 {
 
 .navbar-mobile a:hover,
 .navbar-mobile .active,
-.navbar-mobile li:hover>a {
+.navbar-mobile li:hover > a {
   color: #00629b;
 }
 
@@ -398,11 +398,11 @@ h6 {
 
 .navbar-mobile .dropdown ul a:hover,
 .navbar-mobile .dropdown ul .active:hover,
-.navbar-mobile .dropdown ul li:hover>a {
+.navbar-mobile .dropdown ul li:hover > a {
   color: #00629b;
 }
 
-.navbar-mobile .dropdown>.dropdown-active {
+.navbar-mobile .dropdown > .dropdown-active {
   display: block;
 }
 
@@ -907,9 +907,11 @@ section {
 --------------------------------------------------------------*/
 .officers .member {
   text-align: center;
+  padding-top: 20px;
   margin-bottom: 20px;
   background: #fff;
   border: 1px solid #eef0ef;
+  flex-grow: 1;
 }
 
 .officers .member img {
@@ -1447,7 +1449,7 @@ section {
   font-weight: 600;
 }
 
-.contact .php-email-form .error-message br+br {
+.contact .php-email-form .error-message br + br {
   margin-top: 25px;
 }
 
@@ -1500,7 +1502,7 @@ section {
   padding: 10px 12px;
 }
 
-.contact .php-email-form button[type=submit] {
+.contact .php-email-form button[type="submit"] {
   background: #00629b;
   border: 0;
   padding: 10px 35px;
@@ -1509,7 +1511,7 @@ section {
   border-radius: 50px;
 }
 
-.contact .php-email-form button[type=submit]:hover {
+.contact .php-email-form button[type="submit"]:hover {
   background: #65b5e2;
 }
 
@@ -1636,13 +1638,13 @@ section {
   border: 1px solid #e0e5e2;
 }
 
-#footer .footer-newsletter form input[type=email] {
+#footer .footer-newsletter form input[type="email"] {
   border: 0;
   padding: 4px 8px;
   width: calc(100% - 100px);
 }
 
-#footer .footer-newsletter form input[type=submit] {
+#footer .footer-newsletter form input[type="submit"] {
   position: absolute;
   top: -1px;
   right: -1px;
@@ -1658,7 +1660,7 @@ section {
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
 }
 
-#footer .footer-newsletter form input[type=submit]:hover {
+#footer .footer-newsletter form input[type="submit"]:hover {
   background: #65b5e2;
 }
 
@@ -1812,7 +1814,7 @@ section {
   font-size: 14px;
 }
 
-#test .subscribe  {
+#test .subscribe {
   position: absolute;
   border: 0;
   background: transparent;
@@ -1825,7 +1827,7 @@ section {
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
 }
 
-#test .footer-newsletter form input[type=submit]:hover {
+#test .footer-newsletter form input[type="submit"]:hover {
   background: #65b5e2;
 }
 
@@ -1837,14 +1839,12 @@ section {
 
 .typed-out {
   overflow: hidden;
-  border-right: .15em solid lightblue;
+  border-right: 0.15em solid lightblue;
   white-space: nowrap;
   font-size: 1.5rem;
   width: 0;
-  animation:
-    typing 5s steps(7) infinite,
-    blink 0.8s infinite;
-  animation-fill-mode: forwards
+  animation: typing 5s steps(7) infinite, blink 0.8s infinite;
+  animation-fill-mode: forwards;
 }
 
 .delay-1 {
@@ -1853,23 +1853,23 @@ section {
 
 @keyframes typing {
   0% {
-    width: 0
+    width: 0;
   }
 
   25% {
-    width: 70%
+    width: 70%;
   }
 
   48% {
-    width: 100%
+    width: 100%;
   }
 
   50% {
-    width: 100%
+    width: 100%;
   }
 
   55% {
-    width: 100%
+    width: 100%;
   }
 
   75% {
@@ -1887,7 +1887,7 @@ section {
 
 @keyframes blink {
   from {
-    border-color: transparent
+    border-color: transparent;
   }
 
   to {
@@ -1936,18 +1936,18 @@ section {
   color: #ffffff;
 }
 
-[id^=modal] {
+[id^="modal"] {
   display: none;
   position: fixed;
   top: 0;
   left: 0;
 }
 
-[id^=modal]:target {
+[id^="modal"]:target {
   display: block;
 }
 
-input[type=checkbox] {
+input[type="checkbox"] {
   position: absolute;
   clip: rect(0 0 0 0);
 }
