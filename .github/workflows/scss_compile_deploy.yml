@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -19,7 +19,7 @@ jobs:
           python-version: 3.11
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: "20"
 
@@ -35,7 +35,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Update Submodules
         run: |
@@ -61,7 +61,7 @@ jobs:
         run: find ./ -type f -name "*.html" -exec sed -i 's/GA_MEASUREMENT_ID/${{ secrets.GA_MEASUREMENT_ID }}/g' {} \;
 
       - name: Archive compiled files
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: compiled-files
           path: ./
@@ -72,7 +72,7 @@ jobs:
 
     steps:
       - name: Download compiled files
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: compiled-files
 
