@@ -57,6 +57,21 @@ jobs:
           cd ops
           npm run cache-busting
 
+      - name: Install SCSS Compiler and Bootstrap for Micromouse
+        run: |
+          cd micromouse
+          npm install
+
+      - name: Compile SCSS for Micromouse
+        run: |
+          cd micromouse
+          npm run sass
+
+      - name: Bust Cache for Micromouse
+        run: |
+          cd micromouse
+          npm run cache-busting
+
       - name: Replace GA_MEASUREMENT_ID in HTML files
         run: find ./ -type f -name "*.html" -exec sed -i 's/GA_MEASUREMENT_ID/${{ secrets.GA_MEASUREMENT_ID }}/g' {} \;
 
