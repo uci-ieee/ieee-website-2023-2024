@@ -1,3 +1,7 @@
 [submodule "ops"]
 	path = ops
 	url = https://github.com/uci-ieee/ops-webpages-2023-2024
+
+[submodule "micromouse"]
+	path = micromouse
+	url = https://github.com/uci-ieee/micromouse-webpages

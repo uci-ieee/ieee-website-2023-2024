@@ -19,7 +19,7 @@ document.write(`
         <li class="dropdown"><a href="#"><span>Projects</span> <i class="bi bi-chevron-down"></i></a>
           <ul>
             <li><a href="./ops/index.html">Open Project Space</a></li>
-            <li><a href="micromouse.html">Micromouse</a></li>
+            <li><a href="./micromouse/mm_index.html">Micromouse</a></li>
           </ul>
         </li>
         <li><a href="workshops.html">Workshops</a></li>
